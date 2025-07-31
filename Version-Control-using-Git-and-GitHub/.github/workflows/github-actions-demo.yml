@@ -1,0 +1,23 @@
+name: Read Hello.txt and Output Content
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  read-Hello-file:
+    runs-on: ubuntu-latest  # The job will run on an Ubuntu machine
+    
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2  # This checks out the code from the repository
+
+    - name: Read and Output hello.txt Content
+      run: |
+        if [ -f Hello.txt ]; then  # Check if hello.txt exists
+          cat Hello.txt           # Output the content of hello.txt
+        else
+          echo "Hello.txt not found!"  # Handle case when the file doesn't exist
+        fi
+
